@@ -1,0 +1,20 @@
+import remiseras.*
+import clientes.*
+import oficina.*
+
+test "Para un viaje de Ana María de 10 km, entre Roxana y Juana, se elige a Juana" {
+     oficina.asignarRemiseras(roxana,juana)
+	 assert.equals(juana, oficina.remiseraElegidaParaViaje(anaMaria, 10))
+}
+
+
+test "Para un viaje de Teresa de 10 km, entre Roxana y Juana, se elige a Roxana" {
+     oficina.asignarRemiseras(roxana,juana)
+	 assert.equals(roxana, oficina.remiseraElegidaParaViaje(teresa, 10))
+}
+
+
+test "Para un viaje de Teresa de 4 km, entre Roxana y Juana, se elige a Roxana" {
+     oficina.asignarRemiseras(roxana,juana)
+	 assert.equals(roxana, oficina.remiseraElegidaParaViaje(teresa, 4))
+}

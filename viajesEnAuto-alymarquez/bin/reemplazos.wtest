@@ -1,0 +1,40 @@
+import remiseras.*
+import clientes.*
+import oficina.*
+
+
+describe "lucia reemplaza a mariela, y melina trabaja para ludmila"{
+	
+	method initialize() {
+		lucia.reemplazaA(mariela)
+		melina.trabajaPara(ludmila)
+	}
+	
+	test "melina trabaja para ludmila, por lo que su precio por km es 15"{
+		assert.equals(15, melina.precioPorKm())
+	}
+	
+	test "por un viaje de 10 kilómetros Lucía le cobra a Melina 150 pesos"{
+		assert.equals(150, lucia.precioViaje(melina, 10))
+	}
+	
+	test "por un viaje de 1 kilómetro Lucía le cobra a Melina 50 pesos, que es el mínimo que establece Mariela"{
+		assert.equals(50, lucia.precioViaje(melina, 1))
+	}
+}
+
+describe "lucia reemplaza a gabriela, y melina trabaja para ludmila"{
+
+	method initialize() {
+		lucia.reemplazaA(gabriela)
+		melina.trabajaPara(ludmila)
+	}
+	
+	test "lucia realiza un viaje de 10km y le cobra 180 a melina"{
+		assert.equals(180, lucia.precioViaje(melina, 10))
+	}
+	
+	test "lucia realiza un viaje de 1km y le cobra 18 a melina"{
+		assert.equals(18, lucia.precioViaje(melina, 1))
+	}
+}
