@@ -1,0 +1,56 @@
+import accesorios.*
+import bicis.*
+import deposito.*
+
+test "testX" {
+	var farolitoB1 = new Farolito()
+	
+	var b1 = new Bicis()
+	b1.marca("Olmo")
+	b1.rodado(28)
+	b1.largo(150)
+	b1.agregarAccesorio(farolitoB1)
+	
+	var farolitoB2 = new Farolito()
+	var canastoB2 = new Canasto()
+	canastoB2.volumen(8)
+	var morralB2 = new MorralBici()
+	morralB2.largo(21)
+	morralB2.tieneOjoDeGato(true)
+	
+	var b2 = new Bicis()
+	b2.marca("Legnano")
+	b2.rodado(26)
+	b2.largo(110)
+	b2.agregarAccesorio(farolitoB2)
+	b2.agregarAccesorio(canastoB2)
+	b2.agregarAccesorio(morralB2)
+	
+	var morralB3 = new MorralBici()
+	morralB3.largo(6)
+	morralB3.tieneOjoDeGato(false)
+	
+	var b3 = new Bicis()
+	b3.marca("Legnano")
+	b3.rodado(20)
+	b3.largo(120)
+	b3.agregarAccesorio(morralB3)
+	
+	var deposito = new Deposito()
+	deposito.agregarBici(b1)
+	deposito.agregarBici(b2)
+	deposito.agregarBici(b3)
+	
+	
+	assert.that(deposito.bicisRapidas() == [b1,b2])
+	assert.that(deposito.bicisMarca() == #{"Olmo","Legnano"})
+	assert.that(not deposito.paraLlevar(50))
+	assert.that(deposito.paraLlevar(10))
+	assert.that(not deposito.esDepositoNocturno())
+	assert.that(deposito.marcaDeLaMasRapida()== "Olmo")
+	assert.equals(deposito.cargaTotalDeLasBicisLargas() , 0)
+	assert.equals(deposito.bicisSinAccesorios(), 0)
+	assert.equals(deposito.companerasDe(b2), [b3])
+	assert.equals(deposito.paresDeCompanieras(), [[b2, b3]])
+	assert.that(not deposito.seHizoLaLuz())
+}
